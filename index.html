@@ -79,7 +79,7 @@
             <div class="flex items-center space-x-3">
                 <!-- Custom Logo (Must be uploaded to GitHub as logo.jpg) -->
                 <img 
-                    src="logo.jpg.jpg" 
+                    src="logo.jpg" 
                     alt="JIBONSETU Logo" 
                     class="h-16 w-auto object-contain"
                     onerror="this.style.display='none'; document.getElementById('fallback-logo').style.display='block';"
@@ -109,6 +109,7 @@
             <div class="hidden md:flex space-x-6 font-medium text-gray-600">
                 <a href="#" onclick="scrollToSection(event, 'home')" class="hover:text-medical-600 transition cursor-pointer">Home</a>
                 <a href="#" onclick="scrollToSection(event, 'booking')" class="hover:text-medical-600 transition text-medical-600 font-bold cursor-pointer">Book Test</a>
+                <a href="#" onclick="scrollToSection(event, 'offers')" class="hover:text-medical-600 transition cursor-pointer">Offers</a>
                 <a href="#" onclick="scrollToSection(event, 'services')" class="hover:text-medical-600 transition cursor-pointer">Services</a>
                 <a href="#" onclick="scrollToSection(event, 'about')" class="hover:text-medical-600 transition cursor-pointer">Why Us</a>
                 <a href="#" onclick="scrollToSection(event, 'contact')" class="hover:text-medical-600 transition cursor-pointer">Contact</a>
@@ -256,6 +257,77 @@
                             <i class="fab fa-whatsapp text-xl mr-2"></i> Book via WhatsApp
                         </button>
                         <p class="text-xs text-center text-gray-400 mt-2">Order details will be sent to our WhatsApp.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW SPECIAL OFFERS SECTION -->
+    <section id="offers" class="py-12 bg-yellow-50 border-y border-yellow-200 w-full">
+        <div class="w-full px-6 max-w-[98%] mx-auto">
+            <div class="text-center mb-8">
+                <span class="bg-red-500 text-white px-3 py-1 rounded-full text-xs font-bold tracking-wide uppercase mb-2 inline-block animate-bounce">
+                    Limited Time Deal
+                </span>
+                <h2 class="text-3xl font-bold text-gray-900">Special Package</h2>
+                <p class="text-gray-600">Exclusive savings for our patients.</p>
+            </div>
+
+            <!-- 🛠️ EDIT OFFERS HERE 🛠️ -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- Offer 1 (Full Body - Auto Deletes After Dec 10) -->
+                <div id="limited-offer-card" class="bg-white rounded-xl shadow-md border-l-4 border-red-500 p-6 relative overflow-hidden group hover:shadow-lg transition">
+                    <div class="absolute top-0 right-0 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-bl-lg">HOT DEAL</div>
+                    <h3 class="font-bold text-xl text-gray-800 mb-2">Full Body Health Checkup</h3>
+                    
+                    <ul class="text-gray-600 text-sm mb-4 space-y-1 list-disc list-inside">
+                        <li>Blood Sugar Level</li>
+                        <li>Complete Blood Count (CBC)</li>
+                        <li>Kidney Function Test (KFT)</li>
+                        <li>Thyroid Profile</li>
+                        <li>Lipid Profile</li>
+                        <li>Liver Function Test (LFT)</li>
+                    </ul>
+
+                    <div class="flex items-end justify-between">
+                        <div>
+                            <span class="text-xs text-gray-400 line-through">₹3600</span>
+                            <span class="text-2xl font-bold text-red-600 block">₹1500</span>
+                            <span class="text-xs text-red-600 font-bold bg-red-50 px-2 py-1 rounded mt-1 inline-block animate-pulse">Valid till 10th Dec</span>
+                            <span class="text-[10px] text-gray-500 block mt-1">*Net Price (No extra discount)</span>
+                        </div>
+                        <button onclick="addOfferToCart('Full Body Health Checkup (Offer)')" class="text-sm font-bold text-red-600 border border-red-200 bg-red-50 px-3 py-2 rounded hover:bg-red-600 hover:text-white transition">Book Now</button>
+                    </div>
+                </div>
+
+                <!-- Offer 2 (Diabetes Care - RESTORED) -->
+                <!-- Added ID for Auto-Delete -->
+                <div id="diabetes-offer-card" class="bg-white rounded-xl shadow-md border-l-4 border-blue-500 p-6 relative overflow-hidden group hover:shadow-lg transition">
+                    <div class="absolute top-0 right-0 bg-blue-500 text-white text-xs font-bold px-3 py-1 rounded-bl-lg">POPULAR</div>
+                    <h3 class="font-bold text-xl text-gray-800 mb-2">Diabetes Care Pack</h3>
+                    <p class="text-gray-600 text-sm mb-4">HbA1c + Fasting Sugar + PP Sugar + Lipid Profile.</p>
+                    <div class="flex items-end justify-between">
+                        <div>
+                            <span class="text-xs text-gray-400 line-through">₹1200</span>
+                            <span class="text-2xl font-bold text-blue-600 block">₹899</span>
+                            <span class="text-xs text-blue-600 font-bold bg-blue-50 px-2 py-1 rounded mt-1 inline-block animate-pulse">Valid till 15th Dec</span>
+                            <span class="text-[10px] text-gray-500 block mt-1">*Net Price (No extra discount)</span>
+                        </div>
+                        <button onclick="addOfferToCart('Diabetes Care Pack (Offer)')" class="text-sm font-bold text-blue-600 border border-blue-200 bg-blue-50 px-3 py-2 rounded hover:bg-blue-600 hover:text-white transition">Book Now</button>
+                    </div>
+                </div>
+
+                <!-- Offer 3 (Senior Citizen - RESTORED) -->
+                <div class="bg-white rounded-xl shadow-md border-l-4 border-green-500 p-6 relative overflow-hidden group hover:shadow-lg transition">
+                    <div class="absolute top-0 right-0 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-bl-lg">SAVER</div>
+                    <h3 class="font-bold text-xl text-gray-800 mb-2">Senior Citizen Offer</h3>
+                    <p class="text-gray-600 text-sm mb-4">Flat 30% Extra Discount on all blood tests for age 60+.</p>
+                    <div class="flex items-end justify-between">
+                        <div class="text-green-600 font-bold text-sm">Use ID Proof</div>
+                        <a href="#contact" onclick="scrollToSection(event, 'contact')" class="text-sm font-bold text-green-600 border border-green-200 bg-green-50 px-3 py-2 rounded hover:bg-green-600 hover:text-white transition">Call Now</a>
                     </div>
                 </div>
 
@@ -475,17 +547,46 @@
     <script type="module">
         // --- NAVIGATION FIX FOR GOOGLE SITES ---
         window.scrollToSection = function(event, sectionId) {
-            event.preventDefault(); // Stops the redirect
+            if(event) event.preventDefault(); // Stops the redirect
             const element = document.getElementById(sectionId);
             if (element) {
                 element.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
         };
 
+        // --- NEW FUNCTION: ADD OFFER TO CART ---
+        window.addOfferToCart = function(testName) {
+            // 1. Scroll to booking section
+            scrollToSection(null, 'booking');
+
+            // 2. Find the checkbox for this test
+            // We use setTimeout to ensure scrolling starts first
+            setTimeout(() => {
+                const checkbox = document.querySelector(`.test-checkbox[data-name="${testName}"]`);
+                if (checkbox) {
+                    if (!checkbox.checked) {
+                        checkbox.checked = true; // Check the box
+                        updateCart(checkbox);    // Trigger cart update logic
+                    }
+                    
+                    // Visual feedback: Flash the row yellow
+                    const row = checkbox.closest('label');
+                    row.classList.add('bg-yellow-200', 'transition', 'duration-500');
+                    setTimeout(() => row.classList.remove('bg-yellow-200'), 1000);
+                } else {
+                    console.error("Test not found in list: " + testName);
+                }
+            }, 300);
+        };
+
         // ==================================================
         // 🛠️ ADMIN AREA: EDIT YOUR TESTS & PRICES HERE 🛠️
         // ==================================================
         const testDatabase = [
+            // 🌟 SPECIAL PACKAGES (Added noDiscount: true)
+            { category: "Special Packages", name: "Full Body Health Checkup (Offer)", price: 1500, noDiscount: true },
+            { category: "Special Packages", name: "Diabetes Care Pack (Offer)", price: 899, noDiscount: true },
+
             // Hematology & Routine
             { category: "Hematology / Routine", name: "COMPLETE HEMOGRAM /CBC", price: 350 },
             { category: "Hematology / Routine", name: "Hb%", price: 110 },
@@ -638,10 +739,13 @@
             if(element) {
                 const name = element.getAttribute('data-name');
                 const price = parseInt(element.getAttribute('data-price'));
+                // Check if this item is marked as no-discount in database
+                const testItem = testDatabase.find(t => t.name === name);
+                const noDiscount = testItem ? !!testItem.noDiscount : false;
                 
                 if(element.checked) {
                     // Add if not exists
-                    if(!cart.find(i => i.name === name)) cart.push({name, price});
+                    if(!cart.find(i => i.name === name)) cart.push({name, price, noDiscount});
                 } else {
                     // Remove
                     cart = cart.filter(i => i.name !== name);
@@ -650,9 +754,12 @@
                 // Full Re-scan (fallback)
                 cart = [];
                 document.querySelectorAll('.test-checkbox:checked').forEach(cb => {
+                    const name = cb.getAttribute('data-name');
+                    const testItem = testDatabase.find(t => t.name === name);
                     cart.push({
-                        name: cb.getAttribute('data-name'),
-                        price: parseInt(cb.getAttribute('data-price'))
+                        name: name,
+                        price: parseInt(cb.getAttribute('data-price')),
+                        noDiscount: testItem ? !!testItem.noDiscount : false
                     });
                 });
             }
@@ -670,6 +777,8 @@
             const couponMsg = document.getElementById('coupon-message');
 
             let subtotal = 0;
+            let discountableTotal = 0; // NEW: Track total eligible for discount
+
             cartItemsContainer.innerHTML = '';
 
             if(cart.length === 0) {
@@ -687,20 +796,34 @@
                 
                 cart.forEach(item => {
                     subtotal += item.price;
+                    if (!item.noDiscount) {
+                        discountableTotal += item.price;
+                    }
+
                     cartItemsContainer.innerHTML += `
                         <div class="flex justify-between items-center bg-gray-50 p-2 rounded border border-gray-100">
-                            <span class="text-sm font-medium text-gray-700 truncate pr-2">${item.name}</span>
+                            <span class="text-sm font-medium text-gray-700 truncate pr-2">
+                                ${item.name} 
+                                ${item.noDiscount ? '<span class="text-[10px] text-red-500 bg-red-50 px-1 rounded ml-1">No Extra Disc.</span>' : ''}
+                            </span>
                             <span class="text-sm font-bold text-gray-900 whitespace-nowrap">₹${item.price}</span>
                         </div>
                     `;
                 });
 
-                // AUTOMATIC 20% DISCOUNT LOGIC
-                let discount = Math.round(subtotal * 0.20); 
-                
-                // Update UI
-                discountRow.classList.remove('hidden');
-                couponMsg.classList.remove('hidden'); // Show "Coupon Applied" box
+                // AUTOMATIC 20% DISCOUNT LOGIC (Only on eligible items)
+                let discount = 0;
+                if (discountableTotal > 0) {
+                    discount = Math.round(discountableTotal * 0.20); 
+                    discountRow.classList.remove('hidden');
+                    couponMsg.classList.remove('hidden'); 
+                    // Update coupon text to explain
+                    couponMsg.innerHTML = `<p class="text-green-700 text-sm font-bold"><i class="fas fa-check-circle mr-1"></i> Coupon "JIBON20" Applied!</p><p class="text-green-600 text-xs">20% off applied to eligible tests.</p>`;
+                } else {
+                    // If only special packages are in cart, hide discount row
+                    discountRow.classList.add('hidden');
+                    couponMsg.classList.add('hidden');
+                }
                 
                 discountEl.innerText = `- ₹${discount}`;
                 subtotalEl.innerText = `₹${subtotal}`;
@@ -751,6 +874,33 @@
 
             // Open WhatsApp
             window.open(`https://wa.me/917407684739?text=${message}`, '_blank');
+        }
+
+        // --- AUTO-DELETE EXPIRED OFFERS ---
+        const currentDate = new Date();
+
+        // 1. Full Body Checkup (Expires 10th Dec 2025)
+        const expiryDateFullBody = new Date('2025-12-10T23:59:59'); 
+        if (currentDate > expiryDateFullBody) {
+            // Remove from HTML UI
+            const offerCard = document.getElementById('limited-offer-card');
+            if (offerCard) offerCard.style.display = 'none';
+
+            // Remove from Search Database
+            const offerIndex = testDatabase.findIndex(t => t.name === "Full Body Health Checkup (Offer)");
+            if (offerIndex > -1) testDatabase.splice(offerIndex, 1);
+        }
+
+        // 2. Diabetes Care Pack (Expires 15th Dec 2025)
+        const expiryDateDiabetes = new Date('2025-12-15T23:59:59'); 
+        if (currentDate > expiryDateDiabetes) {
+            // Remove from HTML UI
+            const offerCard = document.getElementById('diabetes-offer-card');
+            if (offerCard) offerCard.style.display = 'none';
+
+            // Remove from Search Database
+            const offerIndex = testDatabase.findIndex(t => t.name === "Diabetes Care Pack (Offer)");
+            if (offerIndex > -1) testDatabase.splice(offerIndex, 1);
         }
 
         // Initialize Test Menu on Load
