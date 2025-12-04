@@ -143,14 +143,17 @@
                 <p class="text-lg md:text-2xl text-gray-600 mb-8 max-w-3xl">
                     We provide accurate blood testing with <strong>home sample collection service</strong>. Select your tests, apply coupons, and book instantly.
                 </p>
+                
+                <!-- RESTORED: Upload Prescription Button -->
                 <div class="flex flex-col sm:flex-row gap-4">
                     <a href="#booking" onclick="scrollToSection(event, 'booking')" class="bg-medical-600 hover:bg-medical-700 text-white px-8 py-4 rounded-lg text-lg font-bold shadow-md transition flex items-center justify-center cursor-pointer">
                         <i class="fas fa-clipboard-list mr-2"></i> Book A Test
                     </a>
-                    <a href="https://wa.me/917407684739" class="bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-lg text-lg font-bold shadow-md transition flex items-center justify-center">
-                        <i class="fab fa-whatsapp mr-2"></i> WhatsApp Support
-                    </a>
+                    <button onclick="uploadPrescription()" class="bg-white border-2 border-gray-200 text-gray-700 hover:bg-gray-50 px-8 py-4 rounded-lg text-lg font-bold shadow-sm transition flex items-center justify-center">
+                        <i class="fas fa-camera mr-2 text-blue-500"></i> Upload Prescription
+                    </button>
                 </div>
+
             </div>
         </div>
     </header>
@@ -224,12 +227,19 @@
                         </div>
 
                         <!-- Coupon Input (Manual) -->
-                        <div class="mt-4">
+                        <div id="coupon-input-container" class="mt-4">
                             <div class="flex gap-2">
                                 <input type="text" id="coupon-input" placeholder="Coupon Code" class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:border-medical-500 uppercase">
                                 <button onclick="applyCoupon()" class="bg-gray-800 text-white px-4 py-2 rounded text-sm hover:bg-gray-900 font-bold">Apply</button>
                             </div>
                             <p id="coupon-msg" class="text-xs mt-1 h-4 text-center"></p>
+                        </div>
+
+                        <!-- Coupon Message (Success State with Remove Button) -->
+                        <div id="coupon-message" class="mt-4 bg-green-50 border border-green-200 rounded p-3 text-center relative hidden">
+                            <button onclick="removeCoupon()" class="absolute top-2 right-3 text-green-700 hover:text-red-600 font-bold text-lg leading-none" title="Remove Coupon">&times;</button>
+                            <p class="text-green-700 text-sm font-bold"><i class="fas fa-check-circle mr-1"></i> Coupon "JIBON20" Applied!</p>
+                            <p class="text-green-600 text-xs">Online booking discount active.</p>
                         </div>
 
                         <!-- User Info Form -->
@@ -531,7 +541,7 @@
     </section>
 
     <!-- Footer -->
-    <div class="bg-gray-900 text-gray-400 py-8 text-center text-sm border-t border-gray-800 w-full">
+    <div class="bg-gray-900 text-gray-400 py-8 text-center text-sm border-t border-gray-800 w-full pb-20 md:pb-8">
         <p>&copy; 2025 JIBONSETU Blood Collection. All rights reserved.</p>
     </div>
 
@@ -559,9 +569,6 @@
         </button>
     </div>
 
-    <!-- Spacer for Mobile Nav -->
-    <div class="h-16 md:hidden"></div>
-
     <!-- MAIN SCRIPT -->
     <script type="module">
         // --- NAVIGATION FIX FOR GOOGLE SITES ---
@@ -571,6 +578,11 @@
             if (element) {
                 element.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
+        };
+
+        // --- NEW FUNCTION: UPLOAD PRESCRIPTION ---
+        window.uploadPrescription = function() {
+            window.open("https://wa.me/917407684739?text=Hi, I want to upload a prescription.", '_blank');
         };
 
         // --- NEW FUNCTION: ADD OFFER TO CART ---
@@ -795,6 +807,10 @@
             const discountRow = document.getElementById('discount-row');
             const discountEl = document.getElementById('cart-discount');
             
+            // Coupon UI Elements
+            const couponInputContainer = document.getElementById('coupon-input-container');
+            const couponSuccessMsg = document.getElementById('coupon-message');
+            
             let subtotal = 0;
             let discountableTotal = 0; // NEW: Track total eligible for discount
 
@@ -813,6 +829,8 @@
                 discountApplied = false;
                 document.getElementById('coupon-input').value = '';
                 document.getElementById('coupon-msg').innerText = '';
+                couponInputContainer.classList.remove('hidden');
+                couponSuccessMsg.classList.add('hidden');
             } else {
                 cartItemsContainer.classList.remove('hidden');
                 emptyMsg.classList.add('hidden');
@@ -839,12 +857,24 @@
                 if (discountApplied && discountableTotal > 0) {
                     discount = Math.round(discountableTotal * 0.20); 
                     discountRow.classList.remove('hidden');
+                    
+                    // UI: Show Success Message, Hide Input
+                    couponInputContainer.classList.add('hidden');
+                    couponSuccessMsg.classList.remove('hidden');
                 } else {
                     discountRow.classList.add('hidden');
-                    // If discount was applied but no eligible items remain (e.g. user removed all regular tests but kept offer pack)
+                    
+                    // UI: Show Input, Hide Success
+                    couponInputContainer.classList.remove('hidden');
+                    couponSuccessMsg.classList.add('hidden');
+
+                    // If discount was applied but no eligible items remain
                     if(discountApplied && discountableTotal === 0) {
                          document.getElementById('coupon-msg').innerText = "Coupon active, but no eligible items.";
                          document.getElementById('coupon-msg').className = "text-xs mt-1 h-4 text-orange-500 text-center";
+                         // Keep input visible in this edge case so they see why
+                         couponInputContainer.classList.remove('hidden');
+                         couponSuccessMsg.classList.add('hidden');
                     }
                 }
                 
@@ -854,7 +884,7 @@
             }
         }
 
-        // --- MANUAL COUPON FUNCTION ---
+        // --- MANUAL COUPON FUNCTIONS ---
         window.applyCoupon = function() {
             const code = document.getElementById('coupon-input').value.trim().toUpperCase();
             const msg = document.getElementById('coupon-msg');
@@ -867,14 +897,20 @@
 
             if(code === 'JIBON20') {
                 discountApplied = true;
-                msg.innerText = "Success! 20% Discount Applied.";
-                msg.className = "text-xs mt-1 h-4 text-green-600 font-bold text-center";
+                msg.innerText = ""; // Clear error msg if any
             } else {
                 discountApplied = false;
                 msg.innerText = "Invalid Coupon Code.";
                 msg.className = "text-xs mt-1 h-4 text-red-500 text-center";
             }
-            renderCartUI(); // Re-calculate totals
+            renderCartUI(); // Re-calculate totals and toggle UI
+        }
+
+        window.removeCoupon = function() {
+            discountApplied = false;
+            document.getElementById('coupon-input').value = ''; // Clear input
+            document.getElementById('coupon-msg').innerText = ''; // Clear messages
+            renderCartUI(); // Restore UI to initial state
         }
 
         window.bookOrder = function() {
