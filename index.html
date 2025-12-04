@@ -14,8 +14,9 @@
 
       gtag('config', 'G-RGBB4FPK0T'); 
     </script>
+    <!-- 🟢 END TRACKING CODE 🟢 -->
 
-    <!-- 🔴 FAVICON 🔴 -->
+    <!-- 🔴 FAVICON (Browser Tab Icon) 🔴 -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🩸</text></svg>">
 
     <script src="https://cdn.tailwindcss.com"></script>
@@ -26,10 +27,19 @@
             theme: {
                 extend: {
                     colors: {
-                        medical: { 50: '#fef2f2', 100: '#fee2e2', 500: '#ef4444', 600: '#dc2626', 700: '#b91c1c' },
-                        brand: { blue: '#0ea5e9', dark: '#0f172a' }
+                        medical: {
+                            50: '#fef2f2',
+                            100: '#fee2e2',
+                            500: '#ef4444', // Red for blood/urgency
+                            600: '#dc2626',
+                            700: '#b91c1c',
+                            blue: '#0ea5e9', // Blue for trust
+                            dark: '#1e293b'
+                        }
                     },
-                    fontFamily: { sans: ['Roboto', 'sans-serif'] }
+                    fontFamily: {
+                        sans: ['Roboto', 'sans-serif'],
+                    }
                 }
             }
         }
@@ -39,11 +49,14 @@
             background-color: #ffffff;
             background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ef4444' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
         }
+        .markdown-body ul { list-style-type: disc; padding-left: 1.5em; margin-bottom: 1em; }
+        .markdown-body strong { font-weight: 700; color: #1f2937; }
+        
+        /* Custom Scrollbar */
         .cart-scroll::-webkit-scrollbar { width: 6px; }
         .cart-scroll::-webkit-scrollbar-track { background: #f1f1f1; }
         .cart-scroll::-webkit-scrollbar-thumb { background: #ccc; border-radius: 4px; }
-        .modal { transition: opacity 0.25s ease; }
-        body.modal-active { overflow: hidden; }
+        .cart-scroll::-webkit-scrollbar-thumb:hover { background: #aaa; }
     </style>
 </head>
 <body class="font-sans text-gray-700 antialiased w-full overflow-x-hidden">
@@ -51,17 +64,42 @@
     <!-- Top Bar -->
     <div class="bg-medical-700 text-white py-2 px-6 text-sm hidden md:block w-full">
         <div class="flex justify-between items-center w-full max-w-[98%] mx-auto">
-            <div><i class="fas fa-map-marker-alt mr-2"></i> Near UBI Bank, Katlamari, Murshidabad</div>
-            <div><i class="far fa-clock mr-2"></i> Open Daily: 7:00 AM - 8:00 PM</div>
+            <div>
+                <i class="fas fa-map-marker-alt mr-2"></i> Near UBI Bank, Katlamari, Murshidabad
+            </div>
+            <div>
+                <i class="far fa-clock mr-2"></i> Open Daily: 7:00 AM - 8:00 PM
+            </div>
         </div>
     </div>
 
     <!-- Navigation -->
     <nav class="bg-white shadow-md sticky top-0 z-50 w-full">
         <div class="w-full px-6 py-3 flex justify-between items-center max-w-[98%] mx-auto">
-            <div class="flex items-center space-x-3 cursor-pointer" onclick="scrollToSection(event, 'home')">
-                <img src="logo.jpg.jpg" alt="Logo" class="h-14 w-auto object-contain" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                <div class="hidden text-2xl">🩸</div>
+            <div class="flex items-center space-x-3">
+                <!-- Custom Logo (Must be uploaded to GitHub as logo.jpg) -->
+                <img 
+                    src="logo.jpg.jpg" 
+                    alt="JIBONSETU Logo" 
+                    class="h-16 w-auto object-contain"
+                    onerror="this.style.display='none'; document.getElementById('fallback-logo').style.display='block';"
+                >
+                
+                <!-- Fallback SVG (Shown if logo.jpg is not found) -->
+                <div id="fallback-logo" class="h-14 w-14 flex-shrink-0" style="display: none;">
+                    <svg viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full filter drop-shadow-sm">
+                        <path d="M50 0C50 0 10 50 10 75C10 97.0914 27.9086 115 50 115C72.0914 115 90 97.0914 90 75C90 50 50 0 50 0Z" fill="#EF4444"/>
+                        <rect x="42" y="25" width="16" height="45" rx="2" fill="white"/>
+                        <rect x="28" y="40" width="44" height="15" rx="2" fill="white"/>
+                        <path d="M15 80C15 80 30 65 50 65C70 65 85 80 85 80V95H15V80Z" fill="white"/>
+                        <path d="M30 95V85C30 85 35 80 40 85V95H30Z" fill="#EF4444"/>
+                        <path d="M60 95V85C60 85 65 80 70 85V95H60Z" fill="#EF4444"/>
+                        <rect x="25" y="70" width="4" height="10" transform="rotate(-15 25 70)" fill="#EF4444"/>
+                        <rect x="71" y="70" width="4" height="10" transform="rotate(15 71 70)" fill="#EF4444"/>
+                        <rect x="48" y="66" width="4" height="10" fill="#EF4444"/>
+                    </svg>
+                </div>
+                
                 <div>
                     <h1 class="text-xl font-bold text-gray-800 leading-none">JIBONSETU</h1>
                     <span class="text-xs text-gray-500 font-medium">Blood Collection</span>
@@ -69,14 +107,15 @@
             </div>
             
             <div class="hidden md:flex space-x-6 font-medium text-gray-600">
-                <a href="#" onclick="scrollToSection(event, 'home')" class="hover:text-medical-600 transition">Home</a>
-                <a href="#" onclick="scrollToSection(event, 'offers')" class="hover:text-medical-600 transition text-red-500 font-bold">Offers</a>
-                <a href="#" onclick="scrollToSection(event, 'booking')" class="hover:text-medical-600 transition">Book Test</a>
-                <a href="#" onclick="scrollToSection(event, 'tips')" class="hover:text-medical-600 transition">Health Tips</a>
-                <a href="#" onclick="scrollToSection(event, 'contact')" class="hover:text-medical-600 transition">Contact</a>
+                <a href="#" onclick="scrollToSection(event, 'home')" class="hover:text-medical-600 transition cursor-pointer">Home</a>
+                <a href="#" onclick="scrollToSection(event, 'booking')" class="hover:text-medical-600 transition text-medical-600 font-bold cursor-pointer">Book Test</a>
+                <a href="#" onclick="scrollToSection(event, 'offers')" class="hover:text-medical-600 transition cursor-pointer">Offers</a>
+                <a href="#" onclick="scrollToSection(event, 'services')" class="hover:text-medical-600 transition cursor-pointer">Services</a>
+                <a href="#" onclick="scrollToSection(event, 'about')" class="hover:text-medical-600 transition cursor-pointer">Why Us</a>
+                <a href="#" onclick="scrollToSection(event, 'contact')" class="hover:text-medical-600 transition cursor-pointer">Contact</a>
             </div>
 
-            <a href="#" onclick="scrollToSection(event, 'booking')" class="bg-medical-600 hover:bg-medical-700 text-white px-5 py-2 rounded-full font-bold shadow-lg transition transform hover:scale-105 flex items-center">
+            <a href="#" onclick="scrollToSection(event, 'booking')" class="bg-medical-600 hover:bg-medical-700 text-white px-5 py-2 rounded-full font-bold shadow-lg transition transform hover:scale-105 flex items-center cursor-pointer">
                 <i class="fas fa-calendar-check mr-2"></i> Book Now
             </a>
         </div>
@@ -86,11 +125,14 @@
     <header id="home" class="relative hero-pattern pt-16 pb-24 lg:pt-32 lg:pb-40 w-full">
         <div class="w-full px-6 max-w-[98%] mx-auto">
             <div class="w-full md:w-3/4 lg:w-2/3">
+                
+                <!-- NEW: Most Important Header -->
                 <div class="mb-6">
                     <h3 class="text-medical-700 font-extrabold tracking-widest uppercase text-sm md:text-lg border-l-4 border-medical-500 pl-3 py-1">
                         Authorised Collection and Information Centre
                     </h3>
                 </div>
+
                 <span class="bg-medical-100 text-medical-700 px-3 py-1 rounded-full text-sm font-semibold tracking-wide uppercase mb-4 inline-block">
                     NABL Certified & Doctor Verified
                 </span>
@@ -102,46 +144,169 @@
                     We provide accurate blood testing with <strong>home sample collection service</strong>. Select your tests, apply coupons, and book instantly.
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4">
-                    <a href="#" onclick="scrollToSection(event, 'booking')" class="bg-medical-600 hover:bg-medical-700 text-white px-8 py-4 rounded-lg text-lg font-bold shadow-md transition flex items-center justify-center">
+                    <a href="#booking" onclick="scrollToSection(event, 'booking')" class="bg-medical-600 hover:bg-medical-700 text-white px-8 py-4 rounded-lg text-lg font-bold shadow-md transition flex items-center justify-center cursor-pointer">
                         <i class="fas fa-clipboard-list mr-2"></i> Book A Test
                     </a>
-                    <button onclick="uploadPrescription()" class="bg-white border-2 border-gray-200 text-gray-700 hover:bg-gray-50 px-8 py-4 rounded-lg text-lg font-bold shadow-sm transition flex items-center justify-center">
-                        <i class="fas fa-camera mr-2 text-blue-500"></i> Upload Prescription
-                    </button>
+                    <a href="https://wa.me/917407684739" class="bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-lg text-lg font-bold shadow-md transition flex items-center justify-center">
+                        <i class="fab fa-whatsapp mr-2"></i> WhatsApp Support
+                    </a>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- SPECIAL OFFERS SECTION -->
+    <!-- NEW BOOKING / CART SECTION -->
+    <section id="booking" class="py-16 bg-blue-50 w-full">
+        <div class="w-full px-6 max-w-[98%] mx-auto">
+            <div class="text-center mb-12">
+                <span class="bg-green-100 text-green-700 border border-green-200 px-4 py-1 rounded-full text-sm font-bold tracking-wide uppercase mb-3 inline-block animate-pulse">
+                    🎉 Get 20% OFF - Use Code: JIBON20
+                </span>
+                <h2 class="text-3xl font-bold text-gray-900 mb-2">Book Your Test Online</h2>
+                <p class="text-gray-600">Search for any test, select it, and book home collection.</p>
+            </div>
+
+            <div class="flex flex-col lg:flex-row gap-8 w-full">
+                
+                <!-- Left Column: Test Menu & Search -->
+                <div class="lg:w-3/4">
+                    <div class="bg-white rounded-xl shadow-lg p-6 border border-gray-100 h-full">
+                        
+                        <!-- Search Bar -->
+                        <div class="relative mb-6">
+                            <i class="fas fa-search absolute left-4 top-3.5 text-gray-400"></i>
+                            <input type="text" id="test-search" onkeyup="filterTests()" placeholder="Search test name (e.g. Sugar, Thyroid, Dengue)..." 
+                                class="w-full pl-11 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-medical-500 transition shadow-sm">
+                        </div>
+
+                        <div class="flex items-center justify-between mb-4 border-b border-gray-100 pb-2">
+                            <h3 class="text-xl font-bold text-gray-800"><i class="fas fa-flask text-medical-500 mr-2"></i> Select Tests</h3>
+                            <span class="text-sm text-gray-500">Click checkboxes to add</span>
+                        </div>
+
+                        <!-- Dynamic Test Container -->
+                        <div id="test-menu-container" class="space-y-8 max-h-[800px] overflow-y-auto pr-2 cart-scroll">
+                            <!-- Tests will be loaded here from JavaScript -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Cart & Checkout -->
+                <div class="lg:w-1/4" id="cart-section">
+                    <div class="bg-white rounded-xl shadow-xl border-t-4 border-medical-500 p-6 sticky top-24">
+                        <h3 class="text-xl font-bold text-gray-900 mb-4 border-b pb-2">Your Order</h3>
+                        
+                        <!-- Empty Cart State -->
+                        <div id="empty-cart-msg" class="text-center py-8 text-gray-400">
+                            <i class="fas fa-shopping-basket text-4xl mb-2"></i>
+                            <p>No tests selected yet</p>
+                        </div>
+
+                        <!-- Selected Items Container -->
+                        <div id="cart-items" class="space-y-3 mb-6 max-h-64 overflow-y-auto cart-scroll hidden">
+                            <!-- Items will be injected here by JS -->
+                        </div>
+
+                        <!-- Pricing Summary -->
+                        <div class="space-y-2 border-t pt-4 text-sm text-gray-600">
+                            <div class="flex justify-between">
+                                <span>Subtotal</span>
+                                <span id="cart-subtotal">₹0</span>
+                            </div>
+                            <div class="flex justify-between text-green-600 hidden" id="discount-row">
+                                <span>Online Discount (20%)</span>
+                                <span id="cart-discount">- ₹0</span>
+                            </div>
+                            <div class="flex justify-between font-bold text-xl text-gray-900 pt-2 border-t">
+                                <span>Total</span>
+                                <span id="cart-total">₹0</span>
+                            </div>
+                        </div>
+
+                        <!-- Coupon Input (Manual) -->
+                        <div class="mt-4">
+                            <div class="flex gap-2">
+                                <input type="text" id="coupon-input" placeholder="Coupon Code" class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:border-medical-500 uppercase">
+                                <button onclick="applyCoupon()" class="bg-gray-800 text-white px-4 py-2 rounded text-sm hover:bg-gray-900 font-bold">Apply</button>
+                            </div>
+                            <p id="coupon-msg" class="text-xs mt-1 h-4 text-center"></p>
+                        </div>
+
+                        <!-- User Info Form -->
+                        <div class="mt-6 space-y-3">
+                            <h4 class="font-bold text-gray-700 text-sm uppercase">Patient Details</h4>
+                            <input type="text" id="user-name" placeholder="Full Name" class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:border-medical-500 outline-none">
+                            
+                            <!-- Referred By / Doctor Name -->
+                            <input type="text" id="referral-name" placeholder="Referred By / Doctor Name (Optional)" class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:border-medical-500 outline-none bg-gray-50">
+
+                            <!-- Age and Gender -->
+                            <div class="flex gap-2">
+                                <input type="number" id="user-age" placeholder="Age" class="w-1/3 border border-gray-300 rounded px-3 py-2 text-sm focus:border-medical-500 outline-none">
+                                <select id="user-gender" class="w-2/3 border border-gray-300 rounded px-3 py-2 text-sm focus:border-medical-500 outline-none bg-white">
+                                    <option value="">Select Gender</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+
+                            <input type="tel" id="user-phone" placeholder="Phone Number" class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:border-medical-500 outline-none">
+                            <textarea id="user-address" placeholder="Full Address (Vill/Road/Landmark)" rows="2" class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:border-medical-500 outline-none resize-none"></textarea>
+                        </div>
+
+                        <!-- Checkout Button -->
+                        <button onclick="bookOrder()" class="w-full mt-6 bg-medical-600 hover:bg-medical-700 text-white font-bold py-3 rounded-lg shadow-md transition flex items-center justify-center">
+                            <i class="fab fa-whatsapp text-xl mr-2"></i> Book via WhatsApp
+                        </button>
+                        <p class="text-xs text-center text-gray-400 mt-2">Order details will be sent to our WhatsApp.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW SPECIAL OFFERS SECTION -->
     <section id="offers" class="py-12 bg-yellow-50 border-y border-yellow-200 w-full">
         <div class="w-full px-6 max-w-[98%] mx-auto">
             <div class="text-center mb-8">
-                <span class="bg-red-500 text-white px-3 py-1 rounded-full text-xs font-bold tracking-wide uppercase mb-2 inline-block animate-bounce">Limited Time Deals</span>
-                <h2 class="text-3xl font-bold text-gray-900">Special Packages</h2>
+                <span class="bg-red-500 text-white px-3 py-1 rounded-full text-xs font-bold tracking-wide uppercase mb-2 inline-block animate-bounce">
+                    Limited Time Deals
+                </span>
+                <h2 class="text-3xl font-bold text-gray-900">Special Offers & Packages</h2>
+                <p class="text-gray-600">Exclusive savings for our patients.</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 justify-center">
+            <!-- 🛠️ EDIT OFFERS HERE 🛠️ -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 
-                <!-- Offer 1 (Full Body) -->
+                <!-- Offer 1 (Full Body - Auto Deletes After Dec 10) -->
                 <div id="limited-offer-card" class="bg-white rounded-xl shadow-md border-l-4 border-red-500 p-6 relative overflow-hidden group hover:shadow-lg transition">
                     <div class="absolute top-0 right-0 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-bl-lg">HOT DEAL</div>
                     <h3 class="font-bold text-xl text-gray-800 mb-2">Full Body Health Checkup</h3>
+                    
                     <ul class="text-gray-600 text-sm mb-4 space-y-1 list-disc list-inside">
-                        <li>Blood Sugar, CBC, KFT</li>
-                        <li>Thyroid, Lipid, LFT</li>
+                        <li>Blood Sugar Level</li>
+                        <li>Complete Blood Count (CBC)</li>
+                        <li>Kidney Function Test (KFT)</li>
+                        <li>Thyroid Profile</li>
+                        <li>Lipid Profile</li>
+                        <li>Liver Function Test (LFT)</li>
                     </ul>
+
                     <div class="flex items-end justify-between">
                         <div>
                             <span class="text-xs text-gray-400 line-through">₹3600</span>
                             <span class="text-2xl font-bold text-red-600 block">₹1500</span>
                             <span class="text-xs text-red-600 font-bold bg-red-50 px-2 py-1 rounded mt-1 inline-block animate-pulse">Valid till 10th Dec</span>
+                            <span class="text-[10px] text-gray-500 block mt-1">*Net Price (No extra discount)</span>
                         </div>
                         <button onclick="addOfferToCart('Full Body Health Checkup (Offer)')" class="text-sm font-bold text-red-600 border border-red-200 bg-red-50 px-3 py-2 rounded hover:bg-red-600 hover:text-white transition">Book Now</button>
                     </div>
                 </div>
 
-                <!-- Offer 2 (Diabetes) -->
+                <!-- Offer 2 (Diabetes Care - RESTORED) -->
                 <div id="diabetes-offer-card" class="bg-white rounded-xl shadow-md border-l-4 border-blue-500 p-6 relative overflow-hidden group hover:shadow-lg transition">
                     <div class="absolute top-0 right-0 bg-blue-500 text-white text-xs font-bold px-3 py-1 rounded-bl-lg">POPULAR</div>
                     <h3 class="font-bold text-xl text-gray-800 mb-2">Diabetes Care Pack</h3>
@@ -151,12 +316,13 @@
                             <span class="text-xs text-gray-400 line-through">₹1200</span>
                             <span class="text-2xl font-bold text-blue-600 block">₹899</span>
                             <span class="text-xs text-blue-600 font-bold bg-blue-50 px-2 py-1 rounded mt-1 inline-block animate-pulse">Valid till 15th Dec</span>
+                            <span class="text-[10px] text-gray-500 block mt-1">*Net Price (No extra discount)</span>
                         </div>
                         <button onclick="addOfferToCart('Diabetes Care Pack (Offer)')" class="text-sm font-bold text-blue-600 border border-blue-200 bg-blue-50 px-3 py-2 rounded hover:bg-blue-600 hover:text-white transition">Book Now</button>
                     </div>
                 </div>
 
-                <!-- Offer 3 (Senior) -->
+                <!-- Offer 3 (Senior Citizen - RESTORED) -->
                 <div class="bg-white rounded-xl shadow-md border-l-4 border-green-500 p-6 relative overflow-hidden group hover:shadow-lg transition">
                     <div class="absolute top-0 right-0 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-bl-lg">SAVER</div>
                     <h3 class="font-bold text-xl text-gray-800 mb-2">Senior Citizen Offer</h3>
@@ -171,364 +337,619 @@
         </div>
     </section>
 
-    <!-- BOOKING SECTION -->
-    <section id="booking" class="py-16 bg-blue-50 w-full">
+    <!-- Features / Highlights -->
+    <section class="bg-white py-12 relative z-10 w-full">
         <div class="w-full px-6 max-w-[98%] mx-auto">
-            <div class="text-center mb-12">
-                <span class="bg-green-100 text-green-700 border border-green-200 px-4 py-1 rounded-full text-sm font-bold tracking-wide uppercase mb-3 inline-block animate-pulse">
-                    🎉 Get 20% OFF on Online Booking
-                </span>
-                <h2 class="text-3xl font-bold text-gray-900 mb-2">Book Your Test Online</h2>
-                <p class="text-gray-600">Search for any test, select it, and book home collection.</p>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div class="bg-white p-6 rounded-xl shadow-xl border-b-4 border-medical-500 flex flex-col items-center text-center">
+                    <div class="bg-medical-50 p-3 rounded-full text-medical-600 mb-3"><i class="fas fa-home text-2xl"></i></div>
+                    <h3 class="font-bold text-lg mb-1">Home Collection</h3>
+                    <p class="text-gray-500 text-sm">Anywhere in Murshidabad</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-xl border-b-4 border-blue-500 flex flex-col items-center text-center">
+                    <div class="bg-blue-50 p-3 rounded-full text-blue-600 mb-3"><i class="fas fa-certificate text-2xl"></i></div>
+                    <h3 class="font-bold text-lg mb-1">NABL Certified</h3>
+                    <p class="text-gray-500 text-sm">Trusted Reporting Partner</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-xl border-b-4 border-green-500 flex flex-col items-center text-center">
+                    <div class="bg-green-50 p-3 rounded-full text-green-600 mb-3"><i class="fas fa-user-md text-2xl"></i></div>
+                    <h3 class="font-bold text-lg mb-1">Doctor Verified</h3>
+                    <p class="text-gray-500 text-sm">Accurate & Digital Reports</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-xl border-b-4 border-purple-500 flex flex-col items-center text-center">
+                    <div class="bg-purple-50 p-3 rounded-full text-purple-600 mb-3"><i class="fas fa-flask text-2xl"></i></div>
+                    <h3 class="font-bold text-lg mb-1">300+ Tests</h3>
+                    <p class="text-gray-500 text-sm">Available on Request</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-gray-50 w-full">
+        <div class="w-full px-6 max-w-[98%] mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Our Key Services</h2>
+                <div class="h-1 w-20 bg-medical-500 mx-auto rounded"></div>
+                <p class="mt-4 text-gray-600">Wide range of pathology tests available.</p>
             </div>
 
-            <div class="flex flex-col lg:flex-row gap-8 w-full">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition text-center">
+                    <div class="w-16 h-16 bg-red-100 text-red-500 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
+                        <i class="fas fa-tint"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">Blood Sugar</h3>
+                    <p class="text-gray-500 text-sm">Fasting, PP, and Random blood sugar tests.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition text-center">
+                    <div class="w-16 h-16 bg-purple-100 text-purple-500 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
+                        <i class="fas fa-dna"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">Thyroid Profile</h3>
+                    <p class="text-gray-500 text-sm">T3, T4, TSH testing for thyroid health.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition text-center">
+                    <div class="w-16 h-16 bg-yellow-100 text-yellow-500 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">Lipid Profile</h3>
+                    <p class="text-gray-500 text-sm">Cholesterol checkup for heart health.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition text-center">
+                    <div class="w-16 h-16 bg-blue-100 text-blue-500 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">Full Body Checkup</h3>
+                    <p class="text-gray-500 text-sm">Complete health assessment packages.</p>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="#booking" class="text-medical-600 font-semibold hover:text-medical-700 cursor-pointer">
+                    Book a test now <i class="fas fa-arrow-right ml-1"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About / Why Us Section -->
+    <section id="about" class="py-20 bg-white w-full">
+        <div class="w-full px-6 max-w-[98%] mx-auto flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-10 md:mb-0 md:pr-12">
+                <div class="relative bg-gray-100 rounded-xl overflow-hidden h-64 md:h-96 w-full flex items-center justify-center border-2 border-gray-100">
+                    <div class="text-center p-8">
+                         <i class="fas fa-microscope text-6xl text-medical-200 mb-4"></i>
+                         <p class="text-gray-400 font-medium">Safe & Hygienic Lab Environment</p>
+                    </div>
+                </div>
+            </div>
+            <div class="md:w-1/2">
+                <span class="text-medical-600 font-bold tracking-wider uppercase text-sm">Why Choose Us</span>
+                <h2 class="text-3xl font-bold text-gray-900 mb-6 mt-2">Professional Care You Can Trust</h2>
+                <p class="text-gray-600 mb-6 leading-relaxed">
+                    JIBONSETU is your trusted partner for health diagnostics in Katlamari. We combine advanced technology with professional care to ensure you get the most accurate results.
+                </p>
                 
-                <!-- Test Menu -->
-                <div class="lg:w-3/4">
-                    <div class="bg-white rounded-xl shadow-lg p-6 border border-gray-100 h-full">
-                        <div class="relative mb-6">
-                            <i class="fas fa-search absolute left-4 top-3.5 text-gray-400"></i>
-                            <input type="text" id="test-search" onkeyup="filterTests()" placeholder="Search test name (e.g. Sugar, Thyroid, Dengue)..." 
-                                class="w-full pl-11 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-medical-500 transition shadow-sm">
-                        </div>
-                        <div class="flex items-center justify-between mb-4 border-b border-gray-100 pb-2">
-                            <h3 class="text-xl font-bold text-gray-800"><i class="fas fa-flask text-medical-500 mr-2"></i> Select Tests</h3>
-                            <span class="text-sm text-gray-500">Click checkboxes to add</span>
-                        </div>
-                        <div id="test-menu-container" class="space-y-4 max-h-[800px] overflow-y-auto pr-2 cart-scroll">
-                            <!-- Items injected via JS -->
-                        </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="flex items-start">
+                        <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                        <span class="text-gray-700 text-sm"><strong>Professional Phlebotomist</strong><br>Skilled and gentle staff.</span>
                     </div>
-                </div>
-
-                <!-- Cart & Checkout -->
-                <div class="lg:w-1/4">
-                    <div class="bg-white rounded-xl shadow-xl border-t-4 border-medical-500 p-6 sticky top-24">
-                        <h3 class="text-xl font-bold text-gray-900 mb-4 border-b pb-2">Your Order</h3>
-                        
-                        <div id="empty-cart-msg" class="text-center py-8 text-gray-400">
-                            <i class="fas fa-shopping-basket text-4xl mb-2"></i>
-                            <p>No tests selected yet</p>
-                        </div>
-
-                        <div id="cart-items" class="space-y-3 mb-6 max-h-64 overflow-y-auto cart-scroll hidden"></div>
-
-                        <div class="space-y-2 border-t pt-4 text-sm text-gray-600">
-                            <div class="flex justify-between"><span>Subtotal</span><span id="cart-subtotal">₹0</span></div>
-                            <div class="flex justify-between text-green-600 hidden" id="discount-row"><span>Online Discount (20%)</span><span id="cart-discount">- ₹0</span></div>
-                            <div class="flex justify-between font-bold text-xl text-gray-900 pt-2 border-t"><span>Total</span><span id="cart-total">₹0</span></div>
-                        </div>
-
-                        <div id="coupon-message" class="mt-4 bg-green-50 border border-green-200 rounded p-3 text-center hidden">
-                            <p class="text-green-700 text-sm font-bold"><i class="fas fa-check-circle mr-1"></i> "JIBON20" Applied!</p>
-                        </div>
-
-                        <!-- Form -->
-                        <div class="mt-6 space-y-3">
-                            <h4 class="font-bold text-gray-700 text-sm uppercase">Patient Details</h4>
-                            <input type="text" id="user-name" placeholder="Full Name" class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:border-medical-500 outline-none">
-                            <input type="text" id="referral-name" placeholder="Doctor Name (Optional)" class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:border-medical-500 outline-none bg-gray-50">
-                            <div class="flex gap-2">
-                                <input type="number" id="user-age" placeholder="Age" class="w-1/3 border border-gray-300 rounded px-3 py-2 text-sm focus:border-medical-500 outline-none">
-                                <select id="user-gender" class="w-2/3 border border-gray-300 rounded px-3 py-2 text-sm focus:border-medical-500 outline-none bg-white">
-                                    <option value="">Select Gender</option>
-                                    <option value="Male">Male</option>
-                                    <option value="Female">Female</option>
-                                </select>
-                            </div>
-                            <input type="tel" id="user-phone" placeholder="Phone Number" class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:border-medical-500 outline-none">
-                            <textarea id="user-address" placeholder="Full Address" rows="2" class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:border-medical-500 outline-none resize-none"></textarea>
-                        </div>
-
-                        <button onclick="bookOrder()" class="w-full mt-6 bg-medical-600 hover:bg-medical-700 text-white font-bold py-3 rounded-lg shadow-md transition flex items-center justify-center">
-                            <i class="fab fa-whatsapp text-xl mr-2"></i> Book via WhatsApp
-                        </button>
+                    <div class="flex items-start">
+                        <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                        <span class="text-gray-700 text-sm"><strong>Digital Reports</strong><br>Fast delivery via WhatsApp.</span>
+                    </div>
+                    <div class="flex items-start">
+                        <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                        <span class="text-gray-700 text-sm"><strong>Safe & Hygienic</strong><br>Strict sterilization protocols.</span>
+                    </div>
+                    <div class="flex items-start">
+                        <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                        <span class="text-gray-700 text-sm"><strong>Affordable Packages</strong><br>Quality care within budget.</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- HEALTH TIPS SECTION (NEW) -->
-    <section id="tips" class="py-16 bg-white w-full border-t border-gray-100">
+    <!-- Call to Action Banner -->
+    <section class="bg-medical-700 py-16 text-white text-center w-full">
         <div class="w-full px-6 max-w-[98%] mx-auto">
-            <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">Health Tips & Advice</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="bg-gray-50 p-6 rounded-xl hover:bg-white hover:shadow-lg transition border border-transparent hover:border-gray-100">
-                    <i class="fas fa-glass-water text-blue-400 text-3xl mb-4"></i>
-                    <h3 class="font-bold text-lg mb-2">Fasting Rules</h3>
-                    <p class="text-sm text-gray-600">For accurate Sugar & Lipid tests, fast for 10-12 hours. Drink only water during this time.</p>
-                </div>
-                <div class="bg-gray-50 p-6 rounded-xl hover:bg-white hover:shadow-lg transition border border-transparent hover:border-gray-100">
-                    <i class="fas fa-apple-alt text-red-400 text-3xl mb-4"></i>
-                    <h3 class="font-bold text-lg mb-2">Iron Rich Diet</h3>
-                    <p class="text-sm text-gray-600">Low Hemoglobin? Add spinach, dates, and beetroot to your daily diet to boost iron levels naturally.</p>
-                </div>
-                <div class="bg-gray-50 p-6 rounded-xl hover:bg-white hover:shadow-lg transition border border-transparent hover:border-gray-100">
-                    <i class="fas fa-walking text-green-400 text-3xl mb-4"></i>
-                    <h3 class="font-bold text-lg mb-2">Regular Checkups</h3>
-                    <p class="text-sm text-gray-600">Medical experts recommend a full body checkup every 6 months after age 35 to prevent lifestyle diseases.</p>
-                </div>
+            <h2 class="text-3xl font-bold mb-4">Book Your Home Collection Today</h2>
+            <p class="text-medical-100 mb-8 max-w-2xl mx-auto text-lg">
+                Don't stress about travel. Call us and our expert will visit your home anywhere in Murshidabad.
+            </p>
+            
+            <div class="flex flex-col md:flex-row justify-center gap-4 mb-8">
+                <a href="tel:+917407684739" class="bg-white text-medical-700 px-6 py-3 rounded-full text-lg font-bold hover:bg-gray-100 transition shadow-lg inline-flex items-center justify-center">
+                    <i class="fas fa-phone-alt mr-2"></i> +91 74076 84739
+                </a>
+                <a href="tel:+9180031340312" class="bg-white/10 border border-white/30 hover:bg-white/20 text-white px-6 py-3 rounded-full text-lg font-bold transition inline-flex items-center justify-center">
+                    <i class="fas fa-phone mr-2"></i> +91 80031 340312
+                </a>
+                <a href="tel:+916295957979" class="bg-white/10 border border-white/30 hover:bg-white/20 text-white px-6 py-3 rounded-full text-lg font-bold transition inline-flex items-center justify-center">
+                    <i class="fas fa-phone mr-2"></i> +91 62959 57979
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- Contact & Footer -->
+    <!-- Contact Section -->
     <section id="contact" class="py-20 bg-gray-900 text-gray-300 w-full">
         <div class="w-full px-6 max-w-[98%] mx-auto">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                
                 <div>
                     <h3 class="text-white text-2xl font-bold mb-6">Contact Us</h3>
-                    <div class="space-y-4">
-                        <p><i class="fas fa-map-marker-alt text-medical-500 mr-2"></i> Near UBI Bank, Katlamari, Murshidabad</p>
-                        <p><i class="fas fa-phone-alt text-medical-500 mr-2"></i> +91 74076 84739</p>
-                        <p><i class="fas fa-phone mr-2"></i> +91 80031 340312</p>
-                        <p><i class="fas fa-phone mr-2"></i> +91 62959 57979</p>
-                        <p><i class="far fa-clock text-medical-500 mr-2"></i> Mon - Sun: 7:00 AM - 8:00 PM</p>
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="bg-gray-800 p-3 rounded-lg mr-4">
+                                <i class="fas fa-map-marker-alt text-medical-500"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-semibold">Address</h4>
+                                <p>Near UBI Bank, Katlamari,<br>Murshidabad, West Bengal</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div class="bg-gray-800 p-3 rounded-lg mr-4">
+                                <i class="fas fa-phone-alt text-medical-500"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-semibold">Phone</h4>
+                                <p><a href="tel:+917407684739" class="hover:text-medical-400 block">+91 74076 84739</a></p>
+                                <p><a href="tel:+9180031340312" class="hover:text-medical-400 block">+91 80031 340312</a></p>
+                                <p><a href="tel:+916295957979" class="hover:text-medical-400 block">+91 62959 57979</a></p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div class="bg-gray-800 p-3 rounded-lg mr-4">
+                                <i class="far fa-clock text-medical-500"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-semibold">Opening Hours</h4>
+                                <p>Mon - Sun: 7:00 AM - 8:00 PM</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="h-64 bg-gray-800 rounded-xl flex items-center justify-center border border-gray-700">
-                    <div class="text-center">
+
+                <!-- Map Placeholder -->
+                <div class="h-64 bg-gray-800 rounded-xl overflow-hidden relative flex items-center justify-center border border-gray-700">
+                    <div class="text-center p-6">
                         <i class="fas fa-map text-4xl text-gray-600 mb-3"></i>
-                        <p class="text-sm"> <a href="https://www.google.com/maps/search/?api=1&query=Jibon+Setu+Blood+Collection+Katlamari" target="_blank" class="text-medical-400 underline">Open in Google Maps</a></p>
+                        <p class="text-sm">Click to view location on Google Maps</p>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Jibon+Setu+Blood+Collection+Katlamari" target="_blank" class="mt-4 inline-block text-medical-400 hover:text-medical-300 underline">Open Maps</a>
                     </div>
                 </div>
+
             </div>
-        </div>
-        <div class="text-center text-xs mt-12 pt-8 border-t border-gray-800">
-            &copy; 2025 JIBONSETU Blood Collection. All rights reserved.
         </div>
     </section>
 
-    <!-- Mobile Sticky Call Button -->
-    <div class="fixed bottom-0 left-0 right-0 bg-white p-3 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)] md:hidden flex justify-between gap-3 z-50">
-        <a href="https://wa.me/917407684739" class="flex-1 bg-green-500 text-white py-2 rounded-lg font-bold flex items-center justify-center">
-            <i class="fab fa-whatsapp mr-2"></i> WhatsApp
-        </a>
-        <a href="tel:+917407684739" class="flex-1 bg-medical-600 text-white py-2 rounded-lg font-bold flex items-center justify-center">
-            <i class="fas fa-phone mr-2"></i> Call
-        </a>
+    <!-- Footer -->
+    <div class="bg-gray-900 text-gray-400 py-8 text-center text-sm border-t border-gray-800 w-full">
+        <p>&copy; 2025 JIBONSETU Blood Collection. All rights reserved.</p>
     </div>
 
-    <!-- TEST DETAILS MODAL -->
-    <div id="test-modal" class="fixed inset-0 z-[60] hidden items-center justify-center bg-black/60 backdrop-blur-sm opacity-0 modal p-4">
-        <div class="bg-white rounded-2xl w-full max-w-sm p-6 shadow-2xl transform transition-all scale-95" id="modal-content">
-            <div class="flex justify-between items-start mb-4">
-                <h3 id="modal-title" class="text-lg font-bold text-gray-900 leading-tight">Test Name</h3>
-                <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600"><i class="fas fa-times text-xl"></i></button>
-            </div>
-            <div class="space-y-4">
-                <p id="modal-desc" class="text-sm text-gray-600">Description...</p>
-                <div class="grid grid-cols-2 gap-3">
-                    <div class="bg-blue-50 p-3 rounded-lg">
-                        <p class="text-[10px] font-bold text-blue-500 uppercase">Preparation</p>
-                        <p id="modal-prep" class="text-sm font-medium text-gray-800">Fasting</p>
-                    </div>
-                    <div class="bg-green-50 p-3 rounded-lg">
-                        <p class="text-[10px] font-bold text-green-500 uppercase">Report Time</p>
-                        <p id="modal-time" class="text-sm font-medium text-gray-800">24 Hrs</p>
-                    </div>
-                </div>
-            </div>
-            <button onclick="closeModal()" class="mt-6 w-full bg-gray-100 text-gray-800 font-bold py-3 rounded-xl hover:bg-gray-200">Got it</button>
-        </div>
+    <!-- Mobile Sticky Navigation Bar (App-Style) -->
+    <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 flex justify-around py-2 z-50 md:hidden shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)]">
+        <button onclick="scrollToSection(event, 'home')" class="flex flex-col items-center justify-center w-full text-gray-500 hover:text-medical-600 active:text-medical-600">
+            <i class="fas fa-home text-lg mb-1"></i>
+            <span class="text-[10px] font-medium">Home</span>
+        </button>
+        <button onclick="scrollToSection(event, 'offers')" class="flex flex-col items-center justify-center w-full text-gray-500 hover:text-medical-600 active:text-medical-600">
+            <i class="fas fa-tags text-lg mb-1"></i>
+            <span class="text-[10px] font-medium">Offers</span>
+        </button>
+        <button onclick="scrollToSection(event, 'booking')" class="flex flex-col items-center justify-center w-full text-gray-500 hover:text-medical-600 active:text-medical-600">
+            <i class="fas fa-flask text-lg mb-1"></i>
+            <span class="text-[10px] font-medium">Tests</span>
+        </button>
+        <button onclick="scrollToSection(event, 'cart-section')" class="flex flex-col items-center justify-center w-full text-gray-500 hover:text-medical-600 active:text-medical-600">
+            <i class="fas fa-shopping-cart text-lg mb-1"></i>
+            <span class="text-[10px] font-medium">Cart</span>
+        </button>
+        <button onclick="scrollToSection(event, 'contact')" class="flex flex-col items-center justify-center w-full text-gray-500 hover:text-medical-600 active:text-medical-600">
+            <i class="fas fa-phone-alt text-lg mb-1"></i>
+            <span class="text-[10px] font-medium">Contact</span>
+        </button>
     </div>
+
+    <!-- Spacer for Mobile Nav -->
+    <div class="h-16 md:hidden"></div>
 
     <!-- MAIN SCRIPT -->
-    <script>
-        // --- NAVIGATION FIX ---
+    <script type="module">
+        // --- NAVIGATION FIX FOR GOOGLE SITES ---
         window.scrollToSection = function(event, sectionId) {
-            if(event) event.preventDefault();
+            if(event) event.preventDefault(); // Stops the redirect
             const element = document.getElementById(sectionId);
             if (element) {
                 element.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
         };
 
-        // --- UPLOAD PRESCRIPTION ---
-        window.uploadPrescription = function() {
-            window.open("https://wa.me/917407684739?text=Hi, I want to upload a prescription.", '_blank');
+        // --- NEW FUNCTION: ADD OFFER TO CART ---
+        window.addOfferToCart = function(testName) {
+            // 1. Scroll to booking section
+            scrollToSection(null, 'booking');
+
+            // 2. Find the checkbox for this test
+            // We use setTimeout to ensure scrolling starts first
+            setTimeout(() => {
+                const checkbox = document.querySelector(`.test-checkbox[data-name="${testName}"]`);
+                if (checkbox) {
+                    if (!checkbox.checked) {
+                        checkbox.checked = true; // Check the box
+                        updateCart(checkbox);    // Trigger cart update logic
+                    }
+                    
+                    // Visual feedback: Flash the row yellow
+                    const row = checkbox.closest('label');
+                    row.classList.add('bg-yellow-200', 'transition', 'duration-500');
+                    setTimeout(() => row.classList.remove('bg-yellow-200'), 1000);
+                } else {
+                    console.error("Test not found in list: " + testName);
+                }
+            }, 300);
         };
 
-        // --- DATA WITH DETAILS ---
+        // ==================================================
+        // 🛠️ ADMIN AREA: EDIT YOUR TESTS & PRICES HERE 🛠️
+        // ==================================================
         const testDatabase = [
-            // Offers
-            { category: "Special Packages", name: "Full Body Health Checkup (Offer)", price: 1500, noDiscount: true, desc: "Includes Sugar, CBC, KFT, Thyroid, Lipid, LFT.", prep: "10-12 hrs Fasting", time: "24 Hours" },
-            { category: "Special Packages", name: "Diabetes Care Pack (Offer)", price: 899, noDiscount: true, desc: "HbA1c + Fasting Sugar + PP Sugar + Lipid.", prep: "10-12 hrs Fasting", time: "Same Day" },
+            // 🌟 SPECIAL PACKAGES (Added noDiscount: true)
+            { category: "Special Packages", name: "Full Body Health Checkup (Offer)", price: 1500, noDiscount: true },
+            { category: "Special Packages", name: "Diabetes Care Pack (Offer)", price: 899, noDiscount: true },
 
-            // Routine
-            { category: "Hematology / Routine", name: "COMPLETE HEMOGRAM /CBC", price: 350, desc: "Checks overall health: RBC, WBC, Platelets.", prep: "None", time: "6 Hours" },
-            { category: "Hematology / Routine", name: "Hb%", price: 110, desc: "Hemoglobin level check.", prep: "None", time: "4 Hours" },
-            { category: "Diabetes & Urine", name: "Sugar Fasting (F)", price: 80, desc: "Glucose level after 8-10h fasting.", prep: "Fasting", time: "4 Hours" },
-            { category: "Diabetes & Urine", name: "Sugar PP", price: 80, desc: "Glucose level 2 hours after meal.", prep: "2h Post Meal", time: "4 Hours" },
-            { category: "Diabetes & Urine", name: "Urine Routine", price: 220, desc: "Urine analysis for infection/diabetes.", prep: "Morning Sample", time: "4 Hours" },
-            
-            // Profiles
-            { category: "Thyroid & Hormones", name: "Thyroid Profile", price: 810, desc: "T3, T4, TSH levels.", prep: "Morning", time: "24 Hours" },
-            { category: "Biochemistry", name: "Lipid Profile", price: 780, desc: "Cholesterol, Triglycerides, HDL, LDL.", prep: "12h Fasting", time: "Same Day" },
-            { category: "Biochemistry", name: "LFT (Liver Function)", price: 760, desc: "Liver health check.", prep: "None", time: "Same Day" },
-            { category: "Biochemistry", name: "KFT (Kidney Function)", price: 910, desc: "Kidney health check.", prep: "None", time: "Same Day" },
-            
-            // Infection
-            { category: "Infection & Serology", name: "Dengue NS1", price: 700, desc: "Dengue virus detection.", prep: "None", time: "2 Hours" },
-            { category: "Infection & Serology", name: "Typhoid (Widal)", price: 250, desc: "Typhoid fever test.", prep: "None", time: "4 Hours" },
-            
-            // Vitamins
-            { category: "Vitamins & Special", name: "Vitamin B12", price: 1230, desc: "Vitamin B12 level.", prep: "None", time: "24 Hours" },
-            { category: "Vitamins & Special", name: "Vitamin D", price: 1610, desc: "Vitamin D3 level.", prep: "None", time: "24 Hours" }
+            // Hematology & Routine
+            { category: "Hematology / Routine", name: "COMPLETE HEMOGRAM /CBC", price: 350 },
+            { category: "Hematology / Routine", name: "Hb%", price: 110 },
+            { category: "Hematology / Routine", name: "Hb% + ESR", price: 190 },
+            { category: "Hematology / Routine", name: "ESR", price: 180 },
+            { category: "Hematology / Routine", name: "TC, DC, Hb%", price: 190 },
+            { category: "Hematology / Routine", name: "TC, DC, MP, ESR", price: 250 },
+            { category: "Hematology / Routine", name: "TC, DC, Hb%, ESR, MP", price: 250 },
+            { category: "Hematology / Routine", name: "TC, DC, Hb%, ESR", price: 230 },
+            { category: "Hematology / Routine", name: "TC, DC, Hb%, MP", price: 230 },
+            { category: "Hematology / Routine", name: "Blood Group & RH Factor", price: 170 },
+            { category: "Hematology / Routine", name: "Platelet Count (Thrombocyte)", price: 210 },
+            { category: "Hematology / Routine", name: "PCV (Packed Cell Volume)", price: 210 },
+            { category: "Hematology / Routine", name: "MCV", price: 210 },
+            { category: "Hematology / Routine", name: "MCH", price: 210 },
+            { category: "Hematology / Routine", name: "MCHC", price: 210 },
+            { category: "Hematology / Routine", name: "BT, CT", price: 200 },
+
+            // Diabetes & Urine
+            { category: "Diabetes & Urine", name: "Sugar Fasting (F)", price: 80 },
+            { category: "Diabetes & Urine", name: "Sugar PP (Postprandial)", price: 80 },
+            { category: "Diabetes & Urine", name: "Sugar Random (R)", price: 80 },
+            { category: "Diabetes & Urine", name: "HbA1c (Glycocylated Hemoglobin)", price: 610 },
+            { category: "Diabetes & Urine", name: "Urine Routine (RE)", price: 220 },
+            { category: "Diabetes & Urine", name: "Urine For OBT", price: 220 },
+            { category: "Diabetes & Urine", name: "Urine For RE & OBT", price: 240 },
+            { category: "Diabetes & Urine", name: "Urine C/S", price: 200 },
+
+            // Biochemistry (Liver/Kidney/Lipid)
+            { category: "Biochemistry", name: "LFT (Liver Function Test)", price: 760 },
+            { category: "Biochemistry", name: "Lipid Profile", price: 780 },
+            { category: "Biochemistry", name: "KFT / Renal Profile 1", price: 910 },
+            { category: "Biochemistry", name: "KFT / Renal Profile 2", price: 2550 },
+            { category: "Biochemistry", name: "KFT / Renal Profile 3", price: 3550 },
+            { category: "Biochemistry", name: "Creatinine", price: 160 },
+            { category: "Biochemistry", name: "Urea", price: 150 },
+            { category: "Biochemistry", name: "Uric Acid", price: 250 },
+            { category: "Biochemistry", name: "Calcium", price: 280 },
+            { category: "Biochemistry", name: "Cholesterol", price: 240 },
+            { category: "Biochemistry", name: "Triglyceride", price: 360 },
+            { category: "Biochemistry", name: "Bilirubin (Total + Direct)", price: 240 },
+            { category: "Biochemistry", name: "Albumin", price: 210 },
+            { category: "Biochemistry", name: "Protein", price: 260 },
+            { category: "Biochemistry", name: "Sodium", price: 290 },
+            { category: "Biochemistry", name: "Potassium", price: 290 },
+            { category: "Biochemistry", name: "Chloride", price: 300 },
+            { category: "Biochemistry", name: "Creatinine Clearance Test (CCT)", price: 380 },
+
+            // Thyroid & Hormones
+            { category: "Thyroid & Hormones", name: "Thyroid Profile (TSH, T3, T4)", price: 810 },
+            { category: "Thyroid & Hormones", name: "TSH (Thyroid)", price: 410 },
+            { category: "Thyroid & Hormones", name: "Free T3 (FT3)", price: 460 },
+            { category: "Thyroid & Hormones", name: "Free T4 (FT4)", price: 460 },
+            { category: "Thyroid & Hormones", name: "Testosterone", price: 610 },
+            { category: "Thyroid & Hormones", name: "Testosterone Free", price: 670 },
+            { category: "Thyroid & Hormones", name: "Beta HCG (Quantitative)", price: 770 },
+            { category: "Thyroid & Hormones", name: "Calcitonin", price: 2160 },
+            { category: "Thyroid & Hormones", name: "Thyroglobulin Antibody (ATA)", price: 1480 },
+            { category: "Thyroid & Hormones", name: "Thyroxine Binding Globulin", price: 960 },
+
+            // Infection & Serology
+            { category: "Infection & Serology", name: "HbsAg (Australia Antigen)", price: 390 },
+            { category: "Infection & Serology", name: "Widal Reaction (Typhoid)", price: 310 },
+            { category: "Infection & Serology", name: "Typhoid (Rapid)", price: 200 },
+            { category: "Infection & Serology", name: "Dengue NS1", price: 700 },
+            { category: "Infection & Serology", name: "Malaria Parasite (MP)", price: 190 },
+            { category: "Infection & Serology", name: "VDRL", price: 310 },
+            { category: "Infection & Serology", name: "Anti HCV", price: 760 },
+            { category: "Infection & Serology", name: "HIV I & HIV II", price: 740 },
+            { category: "Infection & Serology", name: "RA Factor", price: 350 },
+            { category: "Infection & Serology", name: "CRP", price: 410 },
+
+            // Vitamins & Special
+            { category: "Vitamins & Special", name: "Vitamin B12", price: 1230 },
+            { category: "Vitamins & Special", name: "Vitamin D (25 Hydroxy)", price: 1610 },
+            { category: "Vitamins & Special", name: "Vitamin D (125 Hydroxy)", price: 7270 },
+            { category: "Vitamins & Special", name: "IgE (Total)", price: 630 },
+            { category: "Vitamins & Special", name: "Allergy Profile", price: 3050 },
+            { category: "Vitamins & Special", name: "Alpha Feto Protein (AFP)", price: 710 },
+            { category: "Vitamins & Special", name: "Thalassemia Profile", price: 2450 },
+            { category: "Vitamins & Special", name: "Hemoglobin Electrophoresis", price: 760 },
         ];
+        // ==================================================
 
-        let cart = [];
-
-        function renderTestMenu(filter = "") {
+        // --- RENDER TEST MENU & SEARCH ---
+        window.renderTestMenu = function(filterText = '') {
             const container = document.getElementById('test-menu-container');
-            container.innerHTML = "";
-            const groups = {};
+            container.innerHTML = '';
             
+            // 1. Group Data by Category
+            const groups = {};
             testDatabase.forEach(test => {
-                // Auto Expire in List
-                if(test.name.includes("Full Body") && new Date() > new Date('2025-12-10')) return;
-                if(test.name.includes("Diabetes") && new Date() > new Date('2025-12-15')) return;
-
-                if (test.name.toLowerCase().includes(filter.toLowerCase())) {
+                // Search Logic: Check if test name matches filter
+                if (test.name.toLowerCase().includes(filterText.toLowerCase())) {
                     if (!groups[test.category]) groups[test.category] = [];
                     groups[test.category].push(test);
                 }
             });
 
-            for (const [cat, tests] of Object.entries(groups)) {
-                container.innerHTML += `<h4 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-2 mt-4">${cat}</h4>`;
-                tests.forEach(test => {
-                    const isChecked = cart.find(i => i.name === test.name) ? 'checked' : '';
-                    container.innerHTML += `
-                        <div class="flex items-center justify-between p-3 border border-gray-100 rounded-lg hover:bg-gray-50 mb-2 transition">
-                            <div class="flex items-center flex-1">
-                                <input type="checkbox" class="test-checkbox w-5 h-5 text-medical-600 rounded focus:ring-medical-500" 
-                                    data-name="${test.name}" onchange="toggleCart('${test.name}')" ${isChecked}>
-                                <div class="ml-3">
-                                    <p class="font-bold text-gray-800 text-sm">${test.name}</p>
-                                    <p class="text-xs text-gray-500">₹${test.price}</p>
-                                </div>
-                            </div>
-                            <button onclick="openModal('${test.name}')" class="text-gray-300 hover:text-blue-500 px-2"><i class="fas fa-info-circle"></i></button>
-                        </div>`;
-                });
-            }
-        }
-
-        window.filterTests = () => { renderTestMenu(document.getElementById('test-search').value); }
-
-        window.toggleCart = (name) => {
-            const test = testDatabase.find(t => t.name === name);
-            const index = cart.findIndex(i => i.name === name);
-            if (index > -1) cart.splice(index, 1);
-            else cart.push(test);
-            renderCart();
-        }
-
-        window.addOfferToCart = (name) => {
-            if (!cart.find(i => i.name === name)) {
-                const test = testDatabase.find(t => t.name === name);
-                if(test) cart.push(test);
-            }
-            scrollToSection(null, 'booking');
-            renderCart();
-            renderTestMenu(); // Update checkboxes
-        }
-
-        function renderCart() {
-            const container = document.getElementById('cart-items');
-            const empty = document.getElementById('empty-cart-msg');
-            container.innerHTML = "";
-
-            if (cart.length === 0) {
-                container.classList.add('hidden');
-                empty.classList.remove('hidden');
-                document.getElementById('cart-subtotal').innerText = "₹0";
-                document.getElementById('cart-discount').innerText = "- ₹0";
-                document.getElementById('cart-total').innerText = "₹0";
-                document.getElementById('discount-row').classList.add('hidden');
-                document.getElementById('coupon-message').classList.add('hidden');
+            // 2. Check if no results
+            if (Object.keys(groups).length === 0) {
+                container.innerHTML = `<div class="text-center text-gray-400 py-4">No tests found matching "${filterText}"</div>`;
                 return;
             }
 
-            container.classList.remove('hidden');
-            empty.classList.add('hidden');
+            // 3. Generate HTML
+            for (const [category, tests] of Object.entries(groups)) {
+                // Category Header
+                const section = document.createElement('div');
+                section.innerHTML = `<h4 class="font-bold text-gray-700 mb-3 uppercase text-sm tracking-wide bg-gray-100 p-2 rounded">${category}</h4>`;
+                
+                // Grid for tests
+                const grid = document.createElement('div');
+                grid.className = "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3"; // Changed to 3 columns for wider screen
 
-            let subtotal = 0;
-            let discountable = 0;
+                tests.forEach(test => {
+                    // Check if checked in current cart
+                    const isChecked = cart.some(item => item.name === test.name) ? 'checked' : '';
+                    
+                    grid.innerHTML += `
+                        <label class="flex items-center justify-between p-3 border rounded-lg hover:border-medical-400 cursor-pointer transition group bg-white">
+                            <div class="flex items-center">
+                                <input type="checkbox" class="test-checkbox w-5 h-5 text-medical-600 rounded focus:ring-medical-500" 
+                                    data-name="${test.name}" data-price="${test.price}" 
+                                    onclick="updateCart(this)" ${isChecked}>
+                                <span class="ml-3 font-medium text-gray-700 group-hover:text-medical-700 text-sm">${test.name}</span>
+                            </div>
+                            <span class="font-bold text-gray-600 text-sm">₹${test.price}</span>
+                        </label>
+                    `;
+                });
 
-            cart.forEach(item => {
-                subtotal += item.price;
-                if (!item.noDiscount) discountable += item.price;
-                container.innerHTML += `
-                    <div class="flex justify-between items-center bg-gray-50 p-2 rounded text-sm mb-2">
-                        <span class="truncate pr-2">${item.name}</span>
-                        <div class="flex items-center">
-                            <span class="font-bold mr-3">₹${item.price}</span>
-                            <button onclick="toggleCart('${item.name}')" class="text-red-400"><i class="fas fa-times"></i></button>
-                        </div>
-                    </div>`;
-            });
-
-            let discount = Math.round(discountable * 0.20);
-            document.getElementById('cart-subtotal').innerText = `₹${subtotal}`;
-            document.getElementById('cart-total').innerText = `₹${subtotal - discount}`;
-            
-            if (discount > 0) {
-                document.getElementById('discount-row').classList.remove('hidden');
-                document.getElementById('coupon-message').classList.remove('hidden');
-                document.getElementById('cart-discount').innerText = `- ₹${discount}`;
-            } else {
-                document.getElementById('discount-row').classList.add('hidden');
-                document.getElementById('coupon-message').classList.add('hidden');
+                section.appendChild(grid);
+                container.appendChild(section);
             }
         }
 
-        window.bookOrder = () => {
-            if (cart.length === 0) return alert("Select a test first.");
-            const name = document.getElementById('user-name').value;
-            const phone = document.getElementById('user-phone').value;
-            const addr = document.getElementById('user-address').value;
-            const ref = document.getElementById('referral-name').value || "None";
-            const age = document.getElementById('user-age').value;
-            const gender = document.getElementById('user-gender').value;
-
-            if (!name || !phone || !addr || !age || !gender) return alert("Fill all details.");
-
-            let msg = `*New Order*%0A*Name:* ${name} (${age}/${gender})%0A*Phone:* ${phone}%0A*Ref:* ${ref}%0A*Address:* ${addr}%0A%0A*Tests:*%0A`;
-            cart.forEach(i => msg += `- ${i.name} (₹${i.price})%0A`);
-            msg += `%0A*Total:* ${document.getElementById('cart-total').innerText}`;
-            window.open(`https://wa.me/917407684739?text=${msg}`, '_blank');
+        // Search Filter Function
+        window.filterTests = function() {
+            const searchText = document.getElementById('test-search').value;
+            renderTestMenu(searchText);
         }
 
-        // Modal Logic
-        window.openModal = (name) => {
-            const test = testDatabase.find(t => t.name === name);
-            if(!test) return;
-            document.getElementById('modal-title').innerText = test.name;
-            document.getElementById('modal-desc').innerText = test.desc || "Standard test.";
-            document.getElementById('modal-prep').innerText = test.prep || "None";
-            document.getElementById('modal-time').innerText = test.time || "24h";
-            document.getElementById('test-modal').classList.remove('hidden');
-            document.getElementById('test-modal').classList.add('flex');
-            setTimeout(() => document.getElementById('test-modal').classList.remove('opacity-0'), 10);
-        }
-        window.closeModal = () => {
-            document.getElementById('test-modal').classList.add('opacity-0');
-            setTimeout(() => {
-                document.getElementById('test-modal').classList.add('hidden');
-                document.getElementById('test-modal').classList.remove('flex');
-            }, 200);
+        // --- CART LOGIC ---
+        let cart = [];
+        let discountApplied = false; // Track manual discount status
+
+        // Note: Modified updateCart to accept 'element' optionally to handle checkbox clicks better
+        window.updateCart = function(element) {
+            // If triggered by click, sync state
+            if(element) {
+                const name = element.getAttribute('data-name');
+                const price = parseInt(element.getAttribute('data-price'));
+                // Check if this item is marked as no-discount in database
+                const testItem = testDatabase.find(t => t.name === name);
+                const noDiscount = testItem ? !!testItem.noDiscount : false;
+                
+                if(element.checked) {
+                    // Add if not exists
+                    if(!cart.find(i => i.name === name)) cart.push({name, price, noDiscount});
+                } else {
+                    // Remove
+                    cart = cart.filter(i => i.name !== name);
+                }
+            } else {
+                // Full Re-scan (fallback)
+                cart = [];
+                document.querySelectorAll('.test-checkbox:checked').forEach(cb => {
+                    const name = cb.getAttribute('data-name');
+                    const testItem = testDatabase.find(t => t.name === name);
+                    cart.push({
+                        name: name,
+                        price: parseInt(cb.getAttribute('data-price')),
+                        noDiscount: testItem ? !!testItem.noDiscount : false
+                    });
+                });
+            }
+
+            renderCartUI();
         }
 
-        // Auto Expire Logic
-        const now = new Date();
-        if(now > new Date('2025-12-10')) document.getElementById('limited-offer-card').style.display = 'none';
-        if(now > new Date('2025-12-15')) document.getElementById('diabetes-offer-card').style.display = 'none';
+        function renderCartUI() {
+            const cartItemsContainer = document.getElementById('cart-items');
+            const emptyMsg = document.getElementById('empty-cart-msg');
+            const subtotalEl = document.getElementById('cart-subtotal');
+            const totalEl = document.getElementById('cart-total');
+            const discountRow = document.getElementById('discount-row');
+            const discountEl = document.getElementById('cart-discount');
+            
+            let subtotal = 0;
+            let discountableTotal = 0; // NEW: Track total eligible for discount
 
+            cartItemsContainer.innerHTML = '';
+
+            if(cart.length === 0) {
+                cartItemsContainer.classList.add('hidden');
+                emptyMsg.classList.remove('hidden');
+                // Hide totals/coupon when empty
+                subtotalEl.innerText = "₹0";
+                discountEl.innerText = "- ₹0";
+                totalEl.innerText = "₹0";
+                discountRow.classList.add('hidden');
+                
+                // Reset Coupon State
+                discountApplied = false;
+                document.getElementById('coupon-input').value = '';
+                document.getElementById('coupon-msg').innerText = '';
+            } else {
+                cartItemsContainer.classList.remove('hidden');
+                emptyMsg.classList.add('hidden');
+                
+                cart.forEach(item => {
+                    subtotal += item.price;
+                    if (!item.noDiscount) {
+                        discountableTotal += item.price;
+                    }
+
+                    cartItemsContainer.innerHTML += `
+                        <div class="flex justify-between items-center bg-gray-50 p-2 rounded border border-gray-100">
+                            <span class="text-sm font-medium text-gray-700 truncate pr-2">
+                                ${item.name} 
+                                ${item.noDiscount ? '<span class="text-[10px] text-red-500 bg-red-50 px-1 rounded ml-1">No Extra Disc.</span>' : ''}
+                            </span>
+                            <span class="text-sm font-bold text-gray-900 whitespace-nowrap">₹${item.price}</span>
+                        </div>
+                    `;
+                });
+
+                // MANUAL DISCOUNT LOGIC
+                let discount = 0;
+                if (discountApplied && discountableTotal > 0) {
+                    discount = Math.round(discountableTotal * 0.20); 
+                    discountRow.classList.remove('hidden');
+                } else {
+                    discountRow.classList.add('hidden');
+                    // If discount was applied but no eligible items remain (e.g. user removed all regular tests but kept offer pack)
+                    if(discountApplied && discountableTotal === 0) {
+                         document.getElementById('coupon-msg').innerText = "Coupon active, but no eligible items.";
+                         document.getElementById('coupon-msg').className = "text-xs mt-1 h-4 text-orange-500 text-center";
+                    }
+                }
+                
+                discountEl.innerText = `- ₹${discount}`;
+                subtotalEl.innerText = `₹${subtotal}`;
+                totalEl.innerText = `₹${subtotal - discount}`;
+            }
+        }
+
+        // --- MANUAL COUPON FUNCTION ---
+        window.applyCoupon = function() {
+            const code = document.getElementById('coupon-input').value.trim().toUpperCase();
+            const msg = document.getElementById('coupon-msg');
+            
+            if(cart.length === 0) {
+                msg.innerText = "Add items to cart first.";
+                msg.className = "text-xs mt-1 h-4 text-red-500 text-center";
+                return;
+            }
+
+            if(code === 'JIBON20') {
+                discountApplied = true;
+                msg.innerText = "Success! 20% Discount Applied.";
+                msg.className = "text-xs mt-1 h-4 text-green-600 font-bold text-center";
+            } else {
+                discountApplied = false;
+                msg.innerText = "Invalid Coupon Code.";
+                msg.className = "text-xs mt-1 h-4 text-red-500 text-center";
+            }
+            renderCartUI(); // Re-calculate totals
+        }
+
+        window.bookOrder = function() {
+            if(cart.length === 0) {
+                alert("Please select at least one test.");
+                return;
+            }
+
+            const name = document.getElementById('user-name').value.trim();
+            const referral = document.getElementById('referral-name').value.trim() || "Not Mentioned"; 
+            const age = document.getElementById('user-age').value.trim();
+            const gender = document.getElementById('user-gender').value.trim();
+            const phone = document.getElementById('user-phone').value.trim();
+            const address = document.getElementById('user-address').value.trim();
+
+            if(!name || !phone || !address || !age || !gender) {
+                alert("Please fill in all Patient Details (Name, Age, Gender, Phone, Address).");
+                return;
+            }
+
+            // Construct WhatsApp Message
+            let message = `*New Order from JIBONSETU Website* %0A`;
+            message += `--------------------------------%0A`;
+            message += `*Patient Name:* ${name} %0A`;
+            message += `*Age/Gender:* ${age} / ${gender} %0A`;
+            message += `*Referred By:* ${referral} %0A`;
+            message += `*Phone:* ${phone} %0A`;
+            message += `*Address:* ${address} %0A`;
+            message += `--------------------------------%0A`;
+            message += `*Selected Tests:* %0A`;
+            
+            cart.forEach(item => {
+                message += `- ${item.name} (₹${item.price}) %0A`;
+            });
+
+            const total = document.getElementById('cart-total').innerText;
+
+            message += `--------------------------------%0A`;
+            if(discountApplied) message += `*Coupon Applied:* JIBON20 (20% OFF) %0A`;
+            message += `*Total Amount To Pay:* ${total}`;
+
+            // Open WhatsApp
+            window.open(`https://wa.me/917407684739?text=${message}`, '_blank');
+        }
+
+        // --- AUTO-DELETE EXPIRED OFFERS ---
+        const currentDate = new Date();
+
+        // 1. Full Body Checkup (Expires 10th Dec 2025)
+        const expiryDateFullBody = new Date('2025-12-10T23:59:59'); 
+        if (currentDate > expiryDateFullBody) {
+            // Remove from HTML UI
+            const offerCard = document.getElementById('limited-offer-card');
+            if (offerCard) offerCard.style.display = 'none';
+
+            // Remove from Search Database
+            const offerIndex = testDatabase.findIndex(t => t.name === "Full Body Health Checkup (Offer)");
+            if (offerIndex > -1) testDatabase.splice(offerIndex, 1);
+        }
+
+        // 2. Diabetes Care Pack (Expires 15th Dec 2025)
+        const expiryDateDiabetes = new Date('2025-12-15T23:59:59'); 
+        if (currentDate > expiryDateDiabetes) {
+            // Remove from HTML UI
+            const offerCard = document.getElementById('diabetes-offer-card');
+            if (offerCard) offerCard.style.display = 'none';
+
+            // Remove from Search Database
+            const offerIndex = testDatabase.findIndex(t => t.name === "Diabetes Care Pack (Offer)");
+            if (offerIndex > -1) testDatabase.splice(offerIndex, 1);
+        }
+
+        // Initialize Test Menu on Load
         renderTestMenu();
     </script>
+
 </body>
 </html>
